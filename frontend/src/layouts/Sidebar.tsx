@@ -6,8 +6,11 @@ import {
     TriangleAlert, 
     Bookmark, 
     Clock, 
-    Play }
-from "lucide-react";
+    Play,
+    ExternalLink
+} from "lucide-react";
+
+import { FaGithub } from "react-icons/fa";
 
 export default function Sidebar() {
     const location = useLocation();
@@ -134,13 +137,12 @@ export default function Sidebar() {
             href="https://github.com/SanityGuy"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-zinc-200 hover:text-[#0095B6] transition-colors inline-flex items-center space-x-1"
+            className="font-medium text-zinc-200 hover:text-[#0095B6] hover:scale-[1.02] active:scale-[0.98] transition-colors inline-flex items-center space-x-1"
             >
-            <span>SanityGuy</span>
-            <svg className="h-3 w-3 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            </a>
+                <FaGithub size={15} className="ml-1 inline-flex items-center" />
+                <span>SanityGuy</span>
+                <ExternalLink size={12} className="ml-0.1 inline-flex items-center" />
+                </a>
         </p>
 
         <p className="mt-2 text-[11px] text-zinc-500 font-normal">
