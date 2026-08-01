@@ -1,11 +1,15 @@
 import VideoCard from "./VideoCard";
-import videos from '../video/data/videos';
+import type { Video } from "./types/video";
 
 import {
     FaYoutube
 } from "react-icons/fa";
 
-export default function VideoGrid() {
+interface VideoGridProps {
+    videos: Video[];
+}
+
+export default function VideoGrid({ videos }: VideoGridProps) {
     return (
         <div className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
