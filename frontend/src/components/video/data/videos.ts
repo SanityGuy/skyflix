@@ -10,7 +10,7 @@ const videos: Video[] = [
             "The Sukhoi Su-57 performs an incredible low pass and aerobatic demonstration during the MAKS Airshow.",
 
         thumbnail:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVV0KUgE9-yr5EFZ9gta1fS24W_QKXLGZWlaYMHQCrXwE5TE2FJYqjLpuU&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1wtZQCh0jTUBQCatELcS9TgsjaaT-sSgBXpQr_q367GochqB3v9cMpsk&s=10",
 
         duration: 623,
 
@@ -69,7 +69,7 @@ const videos: Video[] = [
             "Some of the smoothest Airbus A320 landings captured around the world.",
 
         thumbnail:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5_cQ3fPrbzVuGaTUBD9bhZodDYn00lkXupzzkGeBOxq1yqEOtbG4W6GY&s=10",
+            "https://i.ytimg.com/vi/vo026XD-jeQ/maxresdefault.jpg",
 
         duration: 812,
 

@@ -1,4 +1,5 @@
 import type { Video } from "./types/video";
+import { Link } from "react-router-dom";
 import { 
     formatViews,
     formatDuration,
@@ -27,7 +28,8 @@ export default function VideoCard({ video }: VideoCardProps) {
     };
 
     return (
-        <div className="group flex flex-col cursor-pointer rounded-2xl p-2.5 -m-2.5 transform-gpu transition-all duration-150 ease-out hover:scale-[1.03] hover:z-10 hover:bg-slate-800/50 active:scale-[0.98]">
+        <Link to={`/watch/${video.id}`}>
+            <div className="group flex flex-col cursor-pointer rounded-2xl p-2.5 -m-2.5 transform-gpu transition-all duration-150 ease-out hover:scale-[1.03] hover:z-10 hover:bg-slate-800/50 active:scale-[0.98]">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800/60 group-hover:border-[#0095B6]/60 transition-colors duration-200">
                 <img
                     src={video.thumbnail}
@@ -78,7 +80,6 @@ export default function VideoCard({ video }: VideoCardProps) {
                         </div>
                     )}
 
-                    {/* Separator Line + Views & Date */}
                     <div className="mt-2 pt-1.5 border-t border-zinc-800/60 flex items-center text-xs text-zinc-400">
                         <span>{formatViews(video.views)} views</span>
                         <span className="mx-1.5 text-zinc-600">•</span>
@@ -87,5 +88,6 @@ export default function VideoCard({ video }: VideoCardProps) {
                 </div>
             </div>
         </div>
+        </Link>
     );
 }
