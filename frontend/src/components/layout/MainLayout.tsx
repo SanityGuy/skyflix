@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../../layouts/Navbar';
-import Sidebar from '../../layouts/Sidebar';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
 export interface MainLayoutContext {
     searchQuery: string;

@@ -7,8 +7,8 @@ import {
     Bell, 
     User 
 } from "lucide-react";
-import logoIcon from "../assets/logo/sukhoi/favicon.ico";
-import CategoryBar from "../components/category/CategoryBar";
+import logoIcon from "../../assets/logo/sukhoi/android-chrome-192x192.png";
+import CategoryBar from "../category/CategoryBar";
 
 interface NavbarProps {
     searchQuery: string;

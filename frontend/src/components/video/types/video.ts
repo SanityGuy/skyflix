@@ -1,64 +1,36 @@
-export type VideoCategory =
-    | "airshow"
-    | "cockpit"
-    | "landing"
-    | "takeoff"
-    | "tutorial"
-    | "documentary"
-    | "dogfight";
-
-export interface Creator {
+export interface SubtitleTrack {
     id: string;
-
-    username: string;
-
-    displayName: string;
-
-    avatar: string;
-
-    subscribers: number;
-
-    isVerified: boolean;
-
-    isAdmin: boolean;
+    label: string;
+    language: string;
+    src?: string;
 }
 
-export interface Aircraft {
-    name: string;
-
-    manufacturer: string;
-
-    country: string;
-
-    type: string;
+export interface VideoQuality {
+    label: string; // 
+    src: string;
 }
 
 export interface Video {
     id: string;
-
     title: string;
-
-    description: string;
-
+    description?: string;
     thumbnail: string;
-
+    videoUrl: string;
     duration: number;
-
-    uploadedAt: string;
-
     views: number;
-
     likes: number;
-
     dislikes: number;
-
-    comments: number;
-
-    tags: string[];
-
-    category: VideoCategory;
-
-    creator: Creator;
-
-    aircraft: Aircraft;
+    uploadedAt: string | Date;
+    qualities?: VideoQuality[];
+    subtitles?: SubtitleTrack[];
+    creator?: {
+        displayName?: string;
+        avatar?: string;
+        isVerified?: boolean;
+        isAdmin?: boolean;
+    };
+    aircraft?: {
+        name?: string;
+        code?: string;
+    };
 }
