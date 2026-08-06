@@ -54,7 +54,7 @@ function TooltipButton({
         <div className="group/btn relative flex items-center justify-center">
         <button
             onClick={onClick}
-            className={`p-1.5 hover:text-[#0095B6] transition-all duration-200 rounded-lg hover:bg-white/5 active:scale-95 ${
+            className={`p-1.5 transition-all duration-200 rounded-lg hover:bg-white/5 hover:text-[#0095B6] active:scale-95 ${
             active ? "text-[#0095B6]" : "text-zinc-300"
             } ${className}`}
         >
@@ -74,7 +74,7 @@ export default function VideoPlayer({
     src = DEFAULT_VIDEO,
     onToggleTheatre,
     isTheatreMode = false,
-}: VideoPlayerProps) {
+    }: VideoPlayerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 

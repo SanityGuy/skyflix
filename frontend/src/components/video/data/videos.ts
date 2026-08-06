@@ -17,6 +17,7 @@ export const videos: Video[] = [
         views: 9999999999,
         likes: 9999999999,
         dislikes: 0,
+        category: "documentary",
         creator: {
         displayName: "SanityGuy",
         avatar:
@@ -42,6 +43,7 @@ export const videos: Video[] = [
         views: 2415231,
         likes: 183000,
         dislikes: 2900,
+        category: "airshow",
         creator: {
         displayName: "SanityGuy",
         avatar:
@@ -66,6 +68,7 @@ export const videos: Video[] = [
         views: 912430,
         likes: 72000,
         dislikes: 1100,
+        category: "landing",
         creator: {
         displayName: "Captain Joe",
         avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",
@@ -89,6 +92,7 @@ export const videos: Video[] = [
         views: 1563023,
         likes: 128000,
         dislikes: 1800,
+        category: "cockpit",
         creator: {
         displayName: "FlightDeck",
         avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",

@@ -23,6 +23,7 @@ export interface Video {
     uploadedAt: string | Date;
     qualities?: VideoQuality[];
     subtitles?: SubtitleTrack[];
+    category?: string;
     creator?: {
         displayName?: string;
         avatar?: string;

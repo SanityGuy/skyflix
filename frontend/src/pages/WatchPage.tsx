@@ -21,18 +21,19 @@ export default function WatchPage() {
     const [isDisliked, setIsDisliked] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
+    const [isTheatreMode, setIsTheatreMode] = useState(false);
 
     if (!video) {
         return (
-        <div className="flex min-h-[70vh] flex-col items-center justify-center text-center p-6 text-zinc-300">
-            <Radio className="h-12 w-12 text-[#0095B6] animate-pulse mb-4" />
+        <div className="flex min-h-[70vh] flex-col items-center justify-center p-6 text-center text-zinc-300">
+            <Radio className="mb-4 h-12 w-12 animate-pulse text-[#0095B6]" />
             <h1 className="text-2xl font-bold text-white">Video Signal Not Found</h1>
             <p className="mt-1 text-sm text-zinc-400">
             The video you are trying to watch does not exist or has been removed.
             </p>
             <Link
             to="/"
-            className="mt-6 rounded-full bg-[#0095B6] px-5 py-2 text-sm font-semibold text-white hover:bg-[#00819e] transition-colors"
+            className="mt-6 rounded-full bg-[#0095B6] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#00819e]"
             >
             Return to Home
             </Link>
@@ -68,15 +69,78 @@ export default function WatchPage() {
         }
     };
 
+    const handleToggleTheatre = () => {
+        setIsTheatreMode((prev) => !prev);
+    };
+
     return (
-        <div className="mx-auto max-w-[1750px] p-4 lg:p-6 text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div
+        className={`mx-auto p-4 lg:p-6 text-white transition-all duration-300 ${
+            isTheatreMode ? "max-w-none" : "max-w-[1750px]"
+        }`}
+        >
+        {isTheatreMode ? (
+            /* Theatre Mode Layout: Video spans full width at the top */
+            <div className="space-y-6">
+            <div className="w-full bg-black/40 rounded-2xl p-2 lg:p-4 border border-zinc-800/50 backdrop-blur-sm">
+                <VideoPlayer
+                poster={video.thumbnail}
+                src={(video as { videoUrl?: string; src?: string }).videoUrl || (video as { videoUrl?: string; src?: string }).src}
+                title={video.title}
+                isTheatreMode={isTheatreMode}
+                onToggleTheatre={handleToggleTheatre}
+                />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-4">
+                <VideoTitle title={video.title} />
+
+                <VideoActions
+                    creator={video.creator}
+                    subscribers={128000}
+                    likes={likes}
+                    dislikes={dislikes}
+                    subscribed={isSubscribed}
+                    liked={isLiked}
+                    disliked={isDisliked}
+                    saved={isSaved}
+                    onSubscribe={() => setIsSubscribed((prev) => !prev)}
+                    onLike={handleLike}
+                    onDislike={handleDislike}
+                    onSave={() => setIsSaved((prev) => !prev)}
+                />
+
+                <VideoDescription
+                    views={video.views}
+                    uploadedAt={video.uploadedAt}
+                    description={video.description}
+                    aircraftName={video.aircraft?.name}
+                />
+
+                <CommentSection />
+                </div>
+
+                <div>
+                <RecommendedVideos videos={videos} currentVideoId={video.id} />
+                </div>
+            </div>
+            </div>
+        ) : (
+            /* Standard Layout: 2-Column Grid with side recommendations */
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-3">
-            <VideoPlayer poster={video.thumbnail} />
+                <VideoPlayer
+                poster={video.thumbnail}
+                src={(video as { videoUrl?: string; src?: string }).videoUrl || (video as { videoUrl?: string; src?: string }).src}
+                title={video.title}
+                isTheatreMode={isTheatreMode}
+                onToggleTheatre={handleToggleTheatre}
+                />
 
-            <VideoTitle title={video.title} />
+                <VideoTitle title={video.title} />
 
-            <VideoActions
+                <VideoActions
                 creator={video.creator}
                 subscribers={128000}
                 likes={likes}
@@ -89,22 +153,23 @@ export default function WatchPage() {
                 onLike={handleLike}
                 onDislike={handleDislike}
                 onSave={() => setIsSaved((prev) => !prev)}
-            />
+                />
 
-            <VideoDescription
+                <VideoDescription
                 views={video.views}
                 uploadedAt={video.uploadedAt}
                 description={video.description}
                 aircraftName={video.aircraft?.name}
-            />
+                />
 
-            <CommentSection />
+                <CommentSection />
             </div>
 
             <div>
-            <RecommendedVideos videos={videos} currentVideoId={video.id} />
+                <RecommendedVideos videos={videos} currentVideoId={video.id} />
             </div>
-        </div>
+            </div>
+        )}
         </div>
     );
 }
