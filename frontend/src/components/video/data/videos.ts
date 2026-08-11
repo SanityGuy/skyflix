@@ -1,7 +1,7 @@
 import type { Video } from "../types/video";
 
-const sampleVideoUrl =
-    "https://static.videezy.com/system/resources/previews/000/016/140/original/plane_parking_at_gate.mp4";
+import sampleVideoUrl from "../../../assets/demo/SUGIRL.mp4";
+import demoVideoUrl from "../../../assets/demo/WARNING.mp4";
 
 export const videos: Video[] = [
     {
@@ -11,23 +11,35 @@ export const videos: Video[] = [
         "The first ever video uploaded to SkyFlix by SanityGuy. This video is a demo of the platform and is not affiliated with any aircraft manufacturer.",
         thumbnail:
         "https://i.ytimg.com/vi/U2z5QVdwPlQ/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAzOY3TzLzCvzZ9oefTH3s3kQ4yLQ",
-        videoUrl: sampleVideoUrl,
+        videoUrl: demoVideoUrl,
         duration: 300,
         uploadedAt: "2026-07-29T00:30:00.000Z",
         views: 9999999999,
         likes: 9999999999,
         dislikes: 0,
+
         category: "documentary",
+        tags: ["demo"],
+        qualities: [
+        { label: "1080p", src: sampleVideoUrl },
+        { label: "720p", src: sampleVideoUrl },
+        { label: "480p", src: sampleVideoUrl },
+        ],
+
         creator: {
+        id: "sanityguy",
         displayName: "SanityGuy",
         avatar:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdc4ogUglKIS9XLLsVJGOyQZXVRK8ZJzDxN9qrlvKzU94sMcXbynob-l1&s=10",
         isVerified: true,
         isAdmin: true,
         },
+
         aircraft: {
         name: "Sukhoi Su-27",
-        code: "SU-27",
+        manufacturer: "Sukhoi",
+        country: "Russia",
+        type: "Fighter Jet",
         },
     },
     {
@@ -44,7 +56,13 @@ export const videos: Video[] = [
         likes: 183000,
         dislikes: 2900,
         category: "airshow",
+        tags: ["airshow", "su-57", "maks", "aerobatics"],
+        qualities: [
+        { label: "1080p", src: sampleVideoUrl },
+        { label: "720p", src: sampleVideoUrl },
+        ],
         creator: {
+        id: "sanityguy",
         displayName: "SanityGuy",
         avatar:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdc4ogUglKIS9XLLsVJGOyQZXVRK8ZJzDxN9qrlvKzU94sMcXbynob-l1&s=10",
@@ -53,7 +71,9 @@ export const videos: Video[] = [
         },
         aircraft: {
         name: "Sukhoi Su-57",
-        code: "SU-57",
+        manufacturer: "Sukhoi",
+        country: "Russia",
+        type: "Stealth Fighter",
         },
     },
     {
@@ -69,7 +89,13 @@ export const videos: Video[] = [
         likes: 72000,
         dislikes: 1100,
         category: "landing",
+        tags: ["airbus", "a320", "landing", "butter"],
+        qualities: [
+        { label: "1080p", src: sampleVideoUrl },
+        { label: "720p", src: sampleVideoUrl },
+        ],
         creator: {
+        id: "captain-joe",
         displayName: "Captain Joe",
         avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",
         isVerified: true,
@@ -77,7 +103,9 @@ export const videos: Video[] = [
         },
         aircraft: {
         name: "Airbus A320neo",
-        code: "A320",
+        manufacturer: "Airbus",
+        country: "European Union",
+        type: "Commercial Airliner",
         },
     },
     {
@@ -93,7 +121,13 @@ export const videos: Video[] = [
         likes: 128000,
         dislikes: 1800,
         category: "cockpit",
+        tags: ["boeing", "777", "cockpit", "flightdeck"],
+        qualities: [
+        { label: "1080p", src: sampleVideoUrl },
+        { label: "720p", src: sampleVideoUrl },
+        ],
         creator: {
+        id: "flightdeck",
         displayName: "FlightDeck",
         avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",
         isVerified: false,
@@ -101,7 +135,9 @@ export const videos: Video[] = [
         },
         aircraft: {
         name: "Boeing 777-300ER",
-        code: "B777",
+        manufacturer: "Boeing",
+        country: "United States",
+        type: "Wide-body Airliner",
         },
     },
 ];

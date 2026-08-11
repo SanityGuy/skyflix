@@ -29,14 +29,16 @@ export default function VideoCard({ video }: VideoCardProps) {
             <CreatorAvatar creator={currentVideo.creator} />
 
             <div className="flex flex-col pr-1 min-w-0 flex-1">
-                <h3 className="line-clamp-2 text-sm font-semibold text-white group-hover:text-[#0095B6] transition-colors leading-snug">
-                {currentVideo.title}
-                </h3>
+                <Link to={`/channel/@${currentVideo.creator?.id}`}>
+                    <h3 className="line-clamp-2 text-sm font-semibold text-white group-hover:text-[#0095B6] transition-colors leading-snug">
+                    {currentVideo.title}
+                    </h3>
 
-                <div className="mt-1.5 flex items-center space-x-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors">
-                <span className="truncate">{currentVideo.creator?.displayName}</span>
-                <CreatorBadge creator={currentVideo.creator} />
-                </div>
+                    <div className="mt-1.5 flex items-center space-x-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors">
+                    <span className="truncate">{currentVideo.creator?.displayName}</span>
+                    <CreatorBadge creator={currentVideo.creator} />
+                    </div>
+                </Link>
 
                 <AircraftLabel name={currentVideo.aircraft?.name} />
 

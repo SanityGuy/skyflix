@@ -3,6 +3,10 @@ import {
 
 } from "react-icons/fa6";
 
+import {
+    ExternalLink
+} from "lucide-react";
+
 function ProfilePage() {
     return (
         <div className="flex flex-col items-center justify-center py-50 text-center text-zinc-400">

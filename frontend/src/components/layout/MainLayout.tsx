@@ -18,7 +18,7 @@ export default function MainLayout() {
 
     const location = useLocation();
 
-    const showCategories = ['/', '/home', '/explore'].includes(location.pathname);
+    const showCategories = ['/', '/home', '/explore', '/results'].includes(location.pathname);
 
     return (
         <div className="min-h-screen flex flex-col bg-[#0f0f0f]">

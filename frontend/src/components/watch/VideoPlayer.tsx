@@ -17,7 +17,7 @@ import SettingsMenu from "./controls/SettingsMenu";
 import VideoPlayerHUD from "./controls/VideoPlayerHUD";
 
 const DEFAULT_VIDEO =
-    "https://static.videezy.com/system/resources/previews/000/016/140/original/plane_parking_at_gate.mp4";
+    "../../assets/demo/SUGIRL.mp4";
 
 interface VideoPlayerProps {
     poster?: string;

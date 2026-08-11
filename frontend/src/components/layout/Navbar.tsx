@@ -55,13 +55,15 @@ export default function Navbar({
                     value={searchQuery}
                     onChange={(e) => onSearchChange(e.target.value)}
                 />
-                <button
-                    type="submit"
-                    aria-label="Submit Search"
-                    className="flex items-center justify-center border-l border-zinc-700/80 bg-zinc-800/80 px-5 py-1.5 text-zinc-300 hover:bg-zinc-700 hover:text-[#0095B6] transition-colors"
-                >
-                    <Search size={18} />
-                </button>
+                <Link to={`/results?search_query=${searchQuery}`}>
+                    <button
+                        type="submit"
+                        aria-label="Submit Search"
+                        className="flex items-center justify-center border-l border-zinc-700/80 bg-zinc-800/80 px-5 py-1.5 text-zinc-300 hover:bg-zinc-700 hover:text-[#0095B6] transition-colors"
+                    >
+                        <Search size={18} />
+                    </button>
+                </Link>
                 </div>
             </form>
 
@@ -91,12 +93,14 @@ export default function Navbar({
                 <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#0095B6]" />
             </button>
 
-            <button
+            <Link to="/login">
+                <button
                 aria-label="User Account"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-zinc-200 border border-zinc-700 hover:border-[#0095B6] hover:ring-2 hover:ring-[#0095B6]/30 transition-all overflow-hidden"
             >
                 <User size={20} />
             </button>
+            </Link>
             </div>
         </nav>
         </header>
