@@ -1,9 +1,71 @@
 import type { Video } from "../types/video";
+import type { Channel } from "../types/channel";
 
-import sampleVideoUrl from "../../../assets/demo/SUGIRL.mp4";
-import demoVideoUrl from "../../../assets/demo/WARNING.mp4";
+import sampleVideoUrl from "../assets/demo/SUGIRL.mp4";
+import demoVideoUrl from "../assets/demo/WARNING.mp4";
 
-export const videos: Video[] = [
+import adminBanner from "../assets/banner/skyflix.jpg";
+
+import sanityguyAvatar from "../assets/profile/sanityguy.jpg";
+import adminAvatar from "../assets/logo/skyflix/skyflix_icon.png";
+import defaultAvatar from "../assets/profile/default.jpg";
+
+export const creators: Record<string, Channel> = {
+    sanityguy: {
+        id: "sanityguy",
+        displayName: "SanityGuy",
+        avatar: sanityguyAvatar,
+        bannerUrl: adminBanner,
+        subscribers: 69420999,
+        country: "Russia",
+        description: "SanityGuy is a developer and a video creator. He is passionate about technology and loves to share his knowledge with others. SanityGuy is also an avid fan of the video game series Minecraft.",
+        email: "contact@sanityguy.dev",
+        joinedDate: "Aug 1, 2026",
+        isVerified: true,
+        isAdmin: true,
+    },
+    "captain-joe": {
+        id: "captain-joe",
+        displayName: "Captain Joe",
+        avatar: defaultAvatar,
+        bannerUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200",
+        subscribers: 2900000,
+        country: "USA",
+        description: "Captain Joe is an airline pilot sharing flight insights, aviation tips, and landing compilations.",
+        email: "joe@aviation.com",
+        joinedDate: "Aug 3, 2026",
+        isVerified: true,
+        isAdmin: false,
+    },
+    flightdeck: {
+        id: "flightdeck",
+        displayName: "FlightDeck",
+        avatar: defaultAvatar,
+        bannerUrl: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1200",
+        subscribers: 2000000,
+        country: "USA",
+        description: "Inside look into commercial airliner cockpits, pre-flight checklists, and avionics.",
+        email: "info@flightdeck.io",
+        joinedDate: "Aug 5, 2026",
+        isVerified: false,
+        isAdmin: false,
+    },
+    skyflix: {
+        id: "skyflix",
+        displayName: "SkyFlix",
+        avatar: adminAvatar,
+        bannerUrl: adminBanner,
+        subscribers: 4000000,
+        country: "Indonesia",
+        description: "This is the official channel of SkyFlix.",
+        email: "contact@admin.dev",
+        joinedDate: "Aug 14, 2026",
+        isVerified: true,
+        isAdmin: true,
+    }
+    };
+
+    export const videos: Video[] = [
     {
         id: "demo",
         title: "SkyFlix Demo Video",
@@ -12,34 +74,24 @@ export const videos: Video[] = [
         thumbnail:
         "https://i.ytimg.com/vi/U2z5QVdwPlQ/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAzOY3TzLzCvzZ9oefTH3s3kQ4yLQ",
         videoUrl: demoVideoUrl,
-        duration: 300,
+        duration: 53,
         uploadedAt: "2026-07-29T00:30:00.000Z",
-        views: 9999999999,
-        likes: 9999999999,
+        views: 69420999,
+        likes: 69420999,
         dislikes: 0,
-
         category: "documentary",
-        tags: ["demo"],
+        tags: ["demo", "jokes", "funny", "meme"],
         qualities: [
         { label: "1080p", src: sampleVideoUrl },
         { label: "720p", src: sampleVideoUrl },
         { label: "480p", src: sampleVideoUrl },
         ],
-
-        creator: {
-        id: "sanityguy",
-        displayName: "SanityGuy",
-        avatar:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdc4ogUglKIS9XLLsVJGOyQZXVRK8ZJzDxN9qrlvKzU94sMcXbynob-l1&s=10",
-        isVerified: true,
-        isAdmin: true,
-        },
-
+        creator: creators["skyflix"],
         aircraft: {
-        name: "Sukhoi Su-27",
-        manufacturer: "Sukhoi",
-        country: "Russia",
-        type: "Fighter Jet",
+        name: "Toyota B380 Dreamlifter",
+        manufacturer: "Toyota",
+        country: "Indonesia",
+        type: "Airline Car Mutation",
         },
     },
     {
@@ -50,7 +102,7 @@ export const videos: Video[] = [
         thumbnail:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1wtZQCh0jTUBQCatELcS9TgsjaaT-sSgBXpQr_q367GochqB3v9cMpsk&s=10",
         videoUrl: sampleVideoUrl,
-        duration: 623,
+        duration: 30,
         uploadedAt: "2026-07-31T00:30:00.000Z",
         views: 2415231,
         likes: 183000,
@@ -61,14 +113,7 @@ export const videos: Video[] = [
         { label: "1080p", src: sampleVideoUrl },
         { label: "720p", src: sampleVideoUrl },
         ],
-        creator: {
-        id: "sanityguy",
-        displayName: "SanityGuy",
-        avatar:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdc4ogUglKIS9XLLsVJGOyQZXVRK8ZJzDxN9qrlvKzU94sMcXbynob-l1&s=10",
-        isVerified: true,
-        isAdmin: true,
-        },
+        creator: creators["sanityguy"],
         aircraft: {
         name: "Sukhoi Su-57",
         manufacturer: "Sukhoi",
@@ -83,7 +128,7 @@ export const videos: Video[] = [
         "Some of the smoothest Airbus A320 landings captured around the world.",
         thumbnail: "https://i.ytimg.com/vi/vo026XD-jeQ/maxresdefault.jpg",
         videoUrl: sampleVideoUrl,
-        duration: 812,
+        duration: 30,
         uploadedAt: "2026-01-31T08:00:00.000Z",
         views: 912430,
         likes: 72000,
@@ -94,13 +139,7 @@ export const videos: Video[] = [
         { label: "1080p", src: sampleVideoUrl },
         { label: "720p", src: sampleVideoUrl },
         ],
-        creator: {
-        id: "captain-joe",
-        displayName: "Captain Joe",
-        avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",
-        isVerified: true,
-        isAdmin: false,
-        },
+        creator: creators["captain-joe"],
         aircraft: {
         name: "Airbus A320neo",
         manufacturer: "Airbus",
@@ -115,7 +154,7 @@ export const videos: Video[] = [
         "Experience a full cockpit tour and flight deck explanation before departure.",
         thumbnail: "https://i.ytimg.com/vi/arH2zzG2ju0/maxresdefault.jpg",
         videoUrl: sampleVideoUrl,
-        duration: 1145,
+        duration: 30,
         uploadedAt: "2024-02-04T13:20:00.000Z",
         views: 1563023,
         likes: 128000,
@@ -126,13 +165,7 @@ export const videos: Video[] = [
         { label: "1080p", src: sampleVideoUrl },
         { label: "720p", src: sampleVideoUrl },
         ],
-        creator: {
-        id: "flightdeck",
-        displayName: "FlightDeck",
-        avatar: "https://www.svgrepo.com/show/452030/avatar-default.svg",
-        isVerified: false,
-        isAdmin: false,
-        },
+        creator: creators["flightdeck"],
         aircraft: {
         name: "Boeing 777-300ER",
         manufacturer: "Boeing",

@@ -1,3 +1,5 @@
+import type { Channel } from "./channel";
+
 export interface SubtitleTrack {
     id: string;
     label: string;
@@ -10,39 +12,28 @@ export interface VideoQuality {
     src: string;
 }
 
+export interface AircraftInfo {
+    name?: string;
+    manufacturer?: string;
+    country?: string;
+    type?: string;
+}
+
 export interface Video {
     id: string;
     title: string;
     description?: string;
-
     videoUrl: string;
     thumbnail: string;
-    
     views: number;
     duration: number;
     likes: number;
     dislikes: number;
     uploadedAt: string | Date;
-
     qualities?: VideoQuality[];
     subtitles?: SubtitleTrack[];
-
     category?: string;
     tags?: string[];
-
-    aircraft?: {
-        name?: string;
-        manufacturer?: string;
-        country?: string;
-        type?: string;
-    };
-
-    creator?: {
-        id?: string;
-        displayName?: string;
-        avatar?: string;
-        isVerified?: boolean;
-        isAdmin?: boolean;
-    };
-
+    aircraft?: AircraftInfo;
+    creator?: Channel;
 }

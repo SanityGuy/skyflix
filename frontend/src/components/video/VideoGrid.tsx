@@ -1,5 +1,5 @@
 import VideoCard from "./VideoCard";
-import type { Video } from "./types/video";
+import type { Video } from "../../types/video";
 
 import {
     FaYoutube

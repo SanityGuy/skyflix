@@ -16,7 +16,7 @@ export default function NotFoundPage() {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (query.trim()) {
-        navigate(`/?search=${encodeURIComponent(query)}`);
+        navigate(`/results?search_query=${encodeURIComponent(query)}`, { replace: true });
         }
     };
 

@@ -1,23 +1,11 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import {
-    Play,
-    Pause,
-    RotateCcw,
-    RotateCw,
-    Maximize,
-    Minimize,
-    Settings,
-    PictureInPicture2,
-    Tv,
-} from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
-import SeekBar from "./controls/SeekBar";
-import VolumeControl from "./controls/VolumeControl";
 import SettingsMenu from "./controls/SettingsMenu";
 import VideoPlayerHUD from "./controls/VideoPlayerHUD";
+import VideoHeader from "./controls/VideoHeader";
+import VideoControls from "./controls/VideoControls";
 
-const DEFAULT_VIDEO =
-    "../../assets/demo/SUGIRL.mp4";
+const DEFAULT_VIDEO = "../../assets/demo/SUGIRL.mp4";
 
 interface VideoPlayerProps {
     poster?: string;
@@ -27,54 +15,13 @@ interface VideoPlayerProps {
     isTheatreMode?: boolean;
 }
 
-const formatTime = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-};
-
-interface TooltipButtonProps {
-    onClick: () => void;
-    title: string;
-    shortcut?: string;
-    active?: boolean;
-    className?: string;
-    children: React.ReactNode;
-}
-
-function TooltipButton({
-    onClick,
-    title,
-    shortcut,
-    active,
-    className = "",
-    children,
-}: TooltipButtonProps) {
-    return (
-        <div className="group/btn relative flex items-center justify-center">
-        <button
-            onClick={onClick}
-            className={`p-1.5 transition-all duration-200 rounded-lg hover:bg-white/5 hover:text-[#0095B6] active:scale-95 ${
-            active ? "text-[#0095B6]" : "text-zinc-300"
-            } ${className}`}
-        >
-            {children}
-        </button>
-
-        <div className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover/btn:opacity-100 transition-all duration-200 pointer-events-none z-40 whitespace-nowrap rounded bg-zinc-900/95 border border-zinc-700/60 px-2 py-1 text-[10px] font-mono text-zinc-200 shadow-xl backdrop-blur-md translate-y-1 group-hover/btn:translate-y-0">
-            <span>{title}</span>
-            {shortcut && <span className="ml-1 text-[#0095B6]">({shortcut})</span>}
-        </div>
-        </div>
-    );
-}
-
 export default function VideoPlayer({
     poster,
     src = DEFAULT_VIDEO,
+    title = "SUGIRL - Official Video",
     onToggleTheatre,
     isTheatreMode = false,
-    }: VideoPlayerProps) {
+}: VideoPlayerProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -102,12 +49,10 @@ export default function VideoPlayer({
             setShowControls(false);
             setShowSettings(false);
         }
-        }, 3000);
+        }, 2000);
     }, [isPlaying]);
 
-    const handleMouseMove = () => {
-        resetControlsTimer();
-    };
+    const handleMouseMove = () => resetControlsTimer();
 
     const handleMouseLeave = () => {
         if (isPlaying) {
@@ -118,14 +63,13 @@ export default function VideoPlayer({
 
     const togglePlay = useCallback(() => {
         if (!videoRef.current) return;
-        if (isPlaying) {
-        videoRef.current.pause();
+        if (videoRef.current.paused) {
+        videoRef.current.play().catch((e) => console.warn("Play blocked:", e));
         } else {
-        videoRef.current.play();
+        videoRef.current.pause();
         }
-        setIsPlaying(!isPlaying);
         resetControlsTimer();
-    }, [isPlaying, resetControlsTimer]);
+    }, [resetControlsTimer]);
 
     const toggleFullscreen = useCallback(() => {
         if (!containerRef.current) return;
@@ -144,6 +88,12 @@ export default function VideoPlayer({
         setIsMuted(!isMuted);
     }, [isMuted]);
 
+    const handleVolumeChange = (val: number) => {
+        setVolume(val);
+        setIsMuted(val === 0);
+        if (videoRef.current) videoRef.current.volume = val;
+    };
+
     const seekRelative = useCallback((seconds: number) => {
         if (!videoRef.current) return;
         videoRef.current.currentTime = Math.max(
@@ -152,12 +102,16 @@ export default function VideoPlayer({
         );
     }, []);
 
+    const seekTo = (time: number) => {
+        if (videoRef.current) videoRef.current.currentTime = time;
+        setCurrentTime(time);
+    };
+
     const seekToPercent = useCallback(
         (percent: number) => {
         if (!videoRef.current || !duration) return;
         const targetTime = (percent / 100) * duration;
-        videoRef.current.currentTime = targetTime;
-        setCurrentTime(targetTime);
+        seekTo(targetTime);
         },
         [duration]
     );
@@ -171,71 +125,76 @@ export default function VideoPlayer({
         }
     };
 
+    const volumeRef = useRef(volume);
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        volumeRef.current = volume;
+    }, [volume]);
+    
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        video.play().catch((e) => {
+        console.warn("Autoplay blocked by browser policy:", e);
+        });
+    }, [src]);
+
+    useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
         if (["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) return;
 
         if (/^[0-9]$/.test(e.key)) {
-            e.preventDefault();
-            const percent = parseInt(e.key, 10) * 10;
-            seekToPercent(percent);
-            return;
+        e.preventDefault();
+        seekToPercent(parseInt(e.key, 10) * 10);
+        return;
         }
 
         switch (e.key.toLowerCase()) {
-            case " ":
-            case "k":
+        case " ":
+        case "k":
             e.preventDefault();
             togglePlay();
             break;
-            case "f":
+        case "f":
             e.preventDefault();
             toggleFullscreen();
             break;
-            case "m":
+        case "m":
             e.preventDefault();
             toggleMute();
             break;
-            case "j":
-            case "arrowleft":
+        case "j":
+        case "arrowleft":
             e.preventDefault();
             seekRelative(-5);
             break;
-            case "l":
-            case "arrowright":
+        case "l":
+        case "arrowright":
             e.preventDefault();
             seekRelative(5);
             break;
-            case "t":
+        case "t":
             e.preventDefault();
             if (onToggleTheatre) onToggleTheatre();
             break;
-            case "i":
-            case "p":
+        case "i":
+        case "p":
             e.preventDefault();
             togglePiP();
             break;
-            case "arrowup":
+        case "arrowup":
             e.preventDefault();
-            setVolume((v) => {
-                const next = Math.min(1, v + 0.1);
-                if (videoRef.current) videoRef.current.volume = next;
-                return next;
-            });
+            handleVolumeChange(Math.min(1, volumeRef.current + 0.1));
             break;
-            case "arrowdown":
+        case "arrowdown":
             e.preventDefault();
-            setVolume((v) => {
-                const next = Math.max(0, v - 0.1);
-                if (videoRef.current) videoRef.current.volume = next;
-                return next;
-            });
+            handleVolumeChange(Math.max(0, volumeRef.current - 0.1));
             break;
         }
-        };
+    };
 
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
     }, [togglePlay, toggleFullscreen, toggleMute, seekRelative, seekToPercent, onToggleTheatre]);
 
     const isCursorHidden = !showControls && isPlaying;
@@ -251,11 +210,20 @@ export default function VideoPlayer({
         >
         <VideoPlayerHUD isVisible={showControls} />
 
+        <VideoHeader
+            title={title}
+            showControls={showControls}
+            isFullscreen={isFullscreen}
+        />
+
         <video
             ref={videoRef}
             src={src}
             poster={poster}
+            playsInline
             onClick={togglePlay}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
             onTimeUpdate={() => setCurrentTime(videoRef.current?.currentTime || 0)}
             onLoadedMetadata={() => setDuration(videoRef.current?.duration || 0)}
             onEnded={() => setIsPlaying(false)}
@@ -279,126 +247,26 @@ export default function VideoPlayer({
             />
         )}
 
-        <div
-            className={`absolute inset-x-0 bottom-0 z-20 flex flex-col justify-end bg-gradient-to-t from-black/95 via-black/50 to-transparent p-3 pt-10 transition-all duration-300 ${
-            showControls
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-2 pointer-events-none"
-            }`}
-        >
-            <SeekBar
-            currentTime={currentTime}
-            duration={duration}
-            onSeek={(time) => {
-                if (videoRef.current) videoRef.current.currentTime = time;
-                setCurrentTime(time);
-            }}
-            />
-
-            <div className="mt-2 flex items-center justify-between text-white">
-            <div className="flex items-center space-x-2">
-                <TooltipButton
-                onClick={togglePlay}
-                title={isPlaying ? "Pause" : "Play"}
-                shortcut="k"
-                >
-                {isPlaying ? (
-                    <Pause className="h-5 w-5" />
-                ) : (
-                    <Play className="h-5 w-5 fill-current" />
-                )}
-                </TooltipButton>
-
-                <div className="hidden sm:block">
-                <TooltipButton
-                    onClick={() => seekRelative(-10)}
-                    title="Rewind 10s"
-                    shortcut="j"
-                >
-                    <RotateCcw className="h-4 w-4" />
-                </TooltipButton>
-                </div>
-
-                <div className="hidden sm:block">
-                <TooltipButton
-                    onClick={() => seekRelative(10)}
-                    title="Forward 10s"
-                    shortcut="l"
-                >
-                    <RotateCw className="h-4 w-4" />
-                </TooltipButton>
-                </div>
-
-                <VolumeControl
-                volume={volume}
-                isMuted={isMuted}
-                onToggleMute={toggleMute}
-                onVolumeChange={(val) => {
-                    setVolume(val);
-                    setIsMuted(val === 0);
-                    if (videoRef.current) videoRef.current.volume = val;
-                }}
-                />
-
-                <div className="text-xs font-mono text-zinc-300 space-x-1 pl-2">
-                <span className="text-white font-semibold">
-                    {formatTime(currentTime)}
-                </span>
-                <span className="text-zinc-600">/</span>
-                <span>{formatTime(duration)}</span>
-                </div>
-            </div>
-
-            <div className="flex items-center space-x-1 sm:space-x-1.5">
-                <TooltipButton
-                onClick={() => setShowSettings(!showSettings)}
-                title="Settings"
-                active={showSettings}
-                >
-                <Settings
-                    className={`h-5 w-5 transition-transform duration-300 ${
-                    showSettings ? "rotate-45" : ""
-                    }`}
-                />
-                </TooltipButton>
-
-                <div className="hidden sm:block">
-                <TooltipButton
-                    onClick={togglePiP}
-                    title="Picture in Picture"
-                    shortcut="p"
-                >
-                    <PictureInPicture2 className="h-5 w-5" />
-                </TooltipButton>
-                </div>
-
-                {onToggleTheatre && (
-                <div className="hidden sm:block">
-                    <TooltipButton
-                    onClick={onToggleTheatre}
-                    title="Theatre Mode"
-                    shortcut="t"
-                    active={isTheatreMode}
-                    >
-                    <Tv className="h-5 w-5" />
-                    </TooltipButton>
-                </div>
-                )}
-
-                <TooltipButton
-                onClick={toggleFullscreen}
-                title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                shortcut="f"
-                >
-                {isFullscreen ? (
-                    <Minimize className="h-5 w-5" />
-                ) : (
-                    <Maximize className="h-5 w-5" />
-                )}
-                </TooltipButton>
-            </div>
-            </div>
-        </div>
+        <VideoControls
+        showControls={showControls}
+        isPlaying={isPlaying}
+        currentTime={currentTime}
+        duration={duration}
+        volume={volume}
+        isMuted={isMuted}
+        isFullscreen={isFullscreen}
+        showSettings={showSettings}
+        isTheatreMode={isTheatreMode}
+        onTogglePlay={togglePlay}
+        onSeekRelative={seekRelative}
+        onSeekTo={seekTo}
+        onToggleMute={toggleMute}
+        onVolumeChange={handleVolumeChange}
+        onToggleSettings={() => setShowSettings(!showSettings)}
+        onTogglePiP={togglePiP}
+        onToggleTheatre={onToggleTheatre}
+        onToggleFullscreen={toggleFullscreen}
+        />
         </div>
     );
 }

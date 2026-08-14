@@ -1,4 +1,28 @@
+export function formatSubscriptions(subscribers: number): string {
+    if (subscribers >= 1_000_000_000_000) {
+        return (subscribers / 1_000_000_000_000).toFixed(1) + 'T';
+    }
+
+    if (subscribers >= 1_000_000_000) {
+        return (subscribers / 1_000_000_000).toFixed(1) + 'B';
+    }
+
+    if (subscribers >= 1_000_000) {
+        return (subscribers / 1_000_000).toFixed(1) + 'M';
+    }
+
+    if (subscribers >= 1_000) {
+        return (subscribers / 1_000).toFixed(1) + 'K';
+    }
+
+    return subscribers.toString();
+}
+
 export function formatViews(views: number): string {
+    if (views >= 1_000_000_000_000) {
+        return (views / 1_000_000_000_000).toFixed(1) + 'T';
+    }
+
     if (views >= 1_000_000_000) {
         return (views / 1_000_000_000).toFixed(1) + 'B';
     }

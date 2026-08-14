@@ -3,11 +3,11 @@ import {
     ListCollapse, 
     Search, 
     Mic, 
-    Plus, 
+    Upload, 
     Bell, 
     User 
 } from "lucide-react";
-import logoIcon from "../../assets/logo/sukhoi/android-chrome-192x192.png";
+import logoIcon from "../../assets/logo/skyflix/skyflix_logo_dark.png";
 
 interface NavbarProps {
     searchQuery: string;
@@ -24,6 +24,7 @@ export default function Navbar({
 }: NavbarProps) {
     return (
         <header className="sticky top-0 z-50 h-14 w-full border-b border-zinc-800/80 bg-[#0f0f0f]">
+        <div className="flex w-full h-0.5 items-center justify-between bg-zinc-800 active-bg-[#0095B6]/50"></div>
         <nav className="flex h-full items-center justify-between px-4 text-white">
             <div className="flex items-center space-x-3">
             <button
@@ -35,10 +36,7 @@ export default function Navbar({
             </button>
 
             <Link to="/" className="group flex items-center space-x-2">
-                <img src={logoUrl} alt="SkyFlix Logo" className="h-7 w-auto max-w-[120px] object-contain" />
-                <span className="text-xl font-bold tracking-tight text-white">
-                Sky<span className="text-[#0095B6]">Flix</span>
-                </span>
+                <img src={logoUrl} alt="SkyFlix Logo" className="h-18 w-auto max-w-[120px] object-contain" />
             </Link>
             </div>
 
@@ -61,7 +59,7 @@ export default function Navbar({
                         aria-label="Submit Search"
                         className="flex items-center justify-center border-l border-zinc-700/80 bg-zinc-800/80 px-5 py-1.5 text-zinc-300 hover:bg-zinc-700 hover:text-[#0095B6] transition-colors"
                     >
-                        <Search size={18} />
+                        <Search size={22} />
                     </button>
                 </Link>
                 </div>
@@ -72,25 +70,24 @@ export default function Navbar({
                 aria-label="Search with voice"
                 className="ml-3 hidden sm:flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700 hover:text-[#0095B6] transition-colors"
             >
-                <Mic size={18} />
+                <Mic size={22} />
             </button>
             </div>
 
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-2">
             <button
                 aria-label="Create content"
-                className="flex items-center space-x-2 rounded-full bg-zinc-800/80 px-3 py-1.5 text-xs font-medium text-white hover:bg-zinc-700 hover:text-[#0095B6] transition-colors"
+                className="relative rounded-full p-2 text-zinc-300 hover:bg-zinc-800 hover:text-[#0095B6] transition-colors"
             >
-                <Plus size={18} />
-                <span className="hidden md:inline">Create</span>
+                <Upload size={22} />
             </button>
 
             <button
                 aria-label="Notifications"
                 className="relative rounded-full p-2 text-zinc-300 hover:bg-zinc-800 hover:text-[#0095B6] transition-colors"
             >
-                <Bell size={20} />
-                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-[#0095B6]" />
+                <Bell size={22} />
+                <span className="absolute top-1.5 right-1.5 h-3 w-3 rounded-full bg-[#0095B6]" />
             </button>
 
             <Link to="/login">
@@ -98,7 +95,7 @@ export default function Navbar({
                 aria-label="User Account"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800 text-zinc-200 border border-zinc-700 hover:border-[#0095B6] hover:ring-2 hover:ring-[#0095B6]/30 transition-all overflow-hidden"
             >
-                <User size={20} />
+                <User size={22} />
             </button>
             </Link>
             </div>

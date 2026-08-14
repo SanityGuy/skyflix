@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import VideoGrid from "../components/video/VideoGrid";
-import videos from "../components/video/data/videos";
+import videos from "../data/videos";
 import type { MainLayoutContext } from "../components/layout/MainLayout";
 
 export default function HomePage() {

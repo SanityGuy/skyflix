@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plane, ChevronDown, ChevronUp } from "lucide-react";
 import { formatViews, formatDate } from "../../utils/format";
 
@@ -15,7 +16,7 @@ interface VideoDescriptionProps {
     description?: string;
     tags?: string[];
     aircraft?: AircraftInfo;
-    aircraftName?: string; 
+    aircraftName?: string;
 }
 
 export default function VideoDescription({
@@ -27,8 +28,15 @@ export default function VideoDescription({
     aircraftName,
 }: VideoDescriptionProps) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const navigate = useNavigate();
 
     const activeAircraftName = aircraft?.name || aircraftName;
+
+    const handleTagClick = (e: React.MouseEvent, tag: string) => {
+        e.stopPropagation(); 
+        const cleanQuery = tag.replace(/^#/, "");
+        navigate(`/results?search_query=${encodeURIComponent(cleanQuery)}`);
+    };
 
     return (
         <div
@@ -51,16 +59,14 @@ export default function VideoDescription({
         </div>
 
         {tags.length > 0 && (
-            <div className="mt-2 flex flex-wrap gap-x-2 gap-y-1 text-xs font-medium text-[#0095B6]">
+            <div className="mt-2 flex flex-wrap items-center gap-1.5">
             {tags.map((tag) => {
                 const cleanTag = tag.startsWith("#") ? tag : `#${tag}`;
                 return (
                 <span
                     key={tag}
-                    className="hover:underline hover:text-[#2bb3d4] transition-colors"
-                    onClick={(e) => {
-                    e.stopPropagation();
-                    }}
+                    className="rounded-md bg-zinc-800/80 px-2.5 py-1 text-xs font-medium text-zinc-400 border border-zinc-700/50 transition-all duration-150 cursor-pointer hover:bg-[#0095B6]/20 hover:text-[#38bdf8] hover:border-[#0095B6]/50 hover:shadow-[0_0_12px_rgba(0,149,182,0.25)]"
+                    onClick={(e) => handleTagClick(e, tag)}
                 >
                     {cleanTag}
                 </span>

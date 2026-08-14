@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { useOutletContext, useSearchParams } from "react-router-dom";
-import type { MainLayoutContext } from "../components/layout/MainLayout";
+import { useSearchParams } from "react-router-dom";
+import { searchVideos } from "../services/videoServices";
 
 function SearchPage() {
     const [searchParams] = useSearchParams();
-    const { selectedCategory } = useOutletContext<MainLayoutContext>();
-
-    const query = searchParams.get("search_query");
+    const query = searchParams.get("search_query") ?? "";
+    
+    const searchResults = searchVideos(query);
 
     if (!query) {
         return (
@@ -26,9 +26,7 @@ function SearchPage() {
             <h1 className="text-xl font-bold text-zinc-300">Search Page </h1>
             <h3 className="mt-1 text-m text-zinc-400">
                 Hi there, I see that you searched for <br />
-                <span className="text-xl font-medium text-zinc-300">{query}</span><br />
-                with the selected category <br />
-                <span className="text-xl font-medium text-zinc-300">{selectedCategory.toUpperCase()}</span>
+                <span className="text-xl font-medium text-zinc-300">{searchResults.length} results</span><br />
             </h3>
             <Link to="/home">
                 <button
