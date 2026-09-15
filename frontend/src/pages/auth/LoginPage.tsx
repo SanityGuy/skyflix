@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Lock, Mail, ArrowRight } from "lucide-react";
+import { 
+    Lock, 
+    Mail, 
+    ArrowRight,
+    ArrowLeft, 
+} from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 
-import logoUrl from "../assets/logo/skyflix/skyflix_logo_dark.png";
+import logoUrl from "../../assets/logo/skyflix/skyflix_logo_dark.png";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -23,6 +28,15 @@ export default function LoginPage() {
         <div className="min-h-screen w-full bg-zinc-950 flex flex-col items-center justify-center p-4 relative overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0095B6]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#0095B6]/5 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="absolute top-1 left-1">
+            <Link to="/" 
+            className="flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold text-zinc-400 hover:text-[#0095B6] transition-colors mb-2 justify-center px-0"
+            >
+            <ArrowLeft size={16} className="shrink-0" />
+            <span>Back to SkyFlix</span>
+            </Link>
+        </div>
 
         <div className="w-full max-w-md bg-zinc-900/80 border border-zinc-800/80 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative z-10">
             <div className="flex flex-col items-center text-center mb-8">

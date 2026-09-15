@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useParams, useLocation, useSearchParams, Link } from "react-router-dom";
 import { Radio } from "lucide-react";
 
-import { getChannelByHandle, searchChannelVideos } from "../services/channelServices";
-import VideoCard from "../components/video/VideoCard";
+import { getChannelByHandle, searchChannelVideos } from "../../services/channelServices";
+import VideoCard from "../../components/video/VideoCard";
 
-import ChannelBanner from "../components/channel/ChannelBanner";
-import ChannelHeader from "../components/channel/ChannelHeader";
-import ChannelTabs from "../components/channel/ChannelTabs";
-import ChannelAbout from "../components/channel/ChannelAbout";
-import ReportModal from "../components/channel/ReportModal";
+import ChannelBanner from "../../components/channel/ChannelBanner";
+import ChannelHeader from "../../components/channel/ChannelHeader";
+import ChannelTabs from "../../components/channel/ChannelTabs";
+import ChannelAbout from "../../components/channel/ChannelAbout";
+import ReportModal from "../../components/channel/ReportModal";
 
 export default function ChannelPage() {
     const { handle = "" } = useParams<{ handle: string }>();

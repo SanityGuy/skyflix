@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Radio } from "lucide-react";
 
-import { getVideoById, getVideos } from "../services/videoServices";
-import VideoPlayer from "../components/watch/VideoPlayer";
-import VideoTitle from "../components/watch/VideoTitle";
-import VideoActions from "../components/watch/VideoActions";
-import VideoDescription from "../components/watch/VideoDescription";
-import CommentSection from "../components/watch/CommentSection";
-import RecommendedVideos from "../components/watch/RecommendedVideos";
+import { getVideoById, getVideos } from "../../services/videoServices";
+import VideoPlayer from "../../components/watch/VideoPlayer";
+import VideoTitle from "../../components/watch/VideoTitle";
+import VideoActions from "../../components/watch/VideoActions";
+import VideoDescription from "../../components/watch/VideoDescription";
+import CommentSection from "../../components/watch/CommentSection";
+import RecommendedVideos from "../../components/watch/RecommendedVideos";
 
 export default function WatchPage() {
     const [searchParams] = useSearchParams();

@@ -21,7 +21,7 @@ export default function NotFoundPage() {
     };
 
     return (
-        <div className="flex min-h-[75vh] w-full flex-col items-center justify-center px-4 py-12 text-center text-zinc-300">
+        <div className="flex min-h-[100vh] w-full flex-col items-center justify-center px-4 py-12 text-center text-zinc-300 bg-zinc-950">
         <div className="relative mb-8 flex items-center justify-center">
             <div className="absolute h-40 w-40 rounded-full border border-[#0095B6]/20 animate-ping pointer-events-none" />
             <div className="absolute h-32 w-32 rounded-full border border-dashed border-[#0095B6]/40 animate-[spin_12s_linear_infinite]" />
@@ -31,9 +31,9 @@ export default function NotFoundPage() {
             </div>
         </div>
 
-        <div className="inline-flex items-center space-x-2 rounded-full bg-zinc-900/90 border border-zinc-800 px-3 py-1 text-xs font-mono text-[#0095B6] mb-3">
-            <AlertTriangle className="h-3.5 w-3.5 text-amber-500" />
-            <span>404 // PAGE_NOT_FOUND</span>
+        <div className="inline-flex items-center space-x-2 rounded-full bg-zinc-900/90 border border-zinc-800 px-3 py-1 text-xs font-mono text-amber-500 mb-3">
+            <AlertTriangle size={14} />
+            <span >404 // PAGE_NOT_FOUND</span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
@@ -41,7 +41,7 @@ export default function NotFoundPage() {
         </h1>
 
         <p className="mt-2.5 max-w-md text-sm sm:text-base text-zinc-400 leading-relaxed">
-            The flight path or video frequency you requested was not detected!
+            The flight path or video frequency you requested was not detected! If you think this is an error, press the "<span className="text-[#0095B6]">Report Issue</span>" button below.
         </p>
 
         <form 

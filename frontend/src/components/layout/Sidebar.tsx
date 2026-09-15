@@ -210,7 +210,7 @@ export default function Sidebar({ isCollapsed = false }: SidebarProps) {
 
                 <div className="pt-1 space-y-2">
                 <Link
-                    to="/terms"
+                    to="/t/terms"
                     className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 px-2.5 py-1.5 text-[11px] font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white hover:border-zinc-700 transition-all active:scale-98"
                 >
                     <FileText size={13} className="text-[#0095B6]" />

@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router-dom";
-import VideoGrid from "../components/video/VideoGrid";
-import videos from "../data/videos";
-import type { MainLayoutContext } from "../components/layout/MainLayout";
+import VideoGrid from "../../components/video/VideoGrid";
+import videos from '../../data/videos';
+import type { MainLayoutContext } from "../../components/layout/MainLayout";
 
 export default function HomePage() {
     const { searchQuery, selectedCategory } = useOutletContext<MainLayoutContext>();

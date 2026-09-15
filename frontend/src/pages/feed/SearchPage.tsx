@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { searchVideos } from "../services/videoServices";
+import { searchVideos } from "../../services/videoServices";
 
 function SearchPage() {
     const [searchParams] = useSearchParams();

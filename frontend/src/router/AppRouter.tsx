@@ -1,21 +1,23 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import MainLayout from '../components/layout/MainLayout';
+import TLayout from '../components/layout/TLayout';
 
-import HomePage from '../pages/HomePage';
-import WatchPage from '../pages/WatchPage';
-import ProfilePage from '../pages/ProfilePage';
-import SettingsPage from '../pages/SettingsPage';
-import HistoryPage from '../pages/HistoryPage';
-import LiveRadarPage from '../pages/LiveRadarPage';
-import ChannelPage from '../pages/ChannelPage';
-import TermsOfServicePage from '../pages/TermsOfServicePage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import SearchPage from '../pages/SearchPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import HomePage from '../pages/feed/HomePage';
+import WatchPage from '../pages/media/WatchPage';
+import ProfilePage from '../pages/user/ProfilePage';
+import SettingsPage from '../pages/setting/SettingsPage';
+import HistoryPage from '../pages/user/HistoryPage';
+import LiveRadarPage from '../pages/feed/LiveRadarPage';
+import ChannelPage from '../pages/user/ChannelPage';
+import TermsOfServicePage from '../pages/static/TermsOfServicePage';
+import PrivacyPolicyPage from '../pages/static/PrivacyPolicy';
+import LoginPage from '../pages/auth/LoginPage';
+import RegisterPage from '../pages/auth/RegisterPage';
+import SearchPage from '../pages/feed/SearchPage';
+import NotFoundPage from '../pages/static/NotFoundPage';
 
-const router = createBrowserRouter([
-    // 1. Routes WITH Navbar and Sidebar
+const router = createBrowserRouter(
+    [
     {
         element: <MainLayout />,
         children: [
@@ -29,12 +31,24 @@ const router = createBrowserRouter([
             { path: '/channel/:handle/*', element: <ChannelPage /> },
             { path: '/channel', element: <ChannelPage /> },
             { path: '/results', element: <SearchPage /> },
-            { path: '*', element: <NotFoundPage /> },
         ],
     },
-    { path: '/terms', element: <TermsOfServicePage /> },
+
+    {
+        path: '/t',
+        element: <TLayout />,
+        children: [
+            { index: true, element: <Navigate to="/t/terms" replace /> },
+            { path: 'terms', element: <TermsOfServicePage /> },
+            { path: 'privacy', element: <PrivacyPolicyPage /> }, 
+            { path: 'guidelines', element: <TermsOfServicePage /> },
+            { path: 'copyright', element: <TermsOfServicePage /> },
+        ],
+    },
+
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
+    { path: '*', element: <NotFoundPage /> },
 ]);
 
 export default function AppRouter() {
