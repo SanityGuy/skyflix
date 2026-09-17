@@ -19,7 +19,7 @@ export default function MainLayout() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   const location = useLocation();
-  const showCategories = ['/', '/home', '/explore', '/results'].includes(location.pathname);
+  const showCategories = ['/', '/home', '/explore'].includes(location.pathname);
 
   const handleToggleSidebar = () => {
     if (window.innerWidth < 768) {
@@ -66,7 +66,7 @@ export default function MainLayout() {
           </main>
         </div>
       </div>
-      
+
       <BottomNav />
     </div>
   );
