@@ -112,7 +112,7 @@ export default function VideoControls({
                 onVolumeChange={onVolumeChange}
             />
 
-            <div className="text-xs font-mono text-zinc-300 space-x-1 pl-2">
+            <div className="text-xs font-medium text-zinc-300 space-x-1 pl-2">
                 <span className="text-white font-semibold">
                 {formatTime(currentTime)}
                 </span>

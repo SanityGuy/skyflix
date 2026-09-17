@@ -64,7 +64,7 @@ export default function LoginPage() {
             <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-zinc-800" />
             </div>
-            <span className="relative bg-zinc-900 px-3 text-[11px] font-mono text-zinc-500 uppercase tracking-widest">
+            <span className="relative bg-zinc-900 px-3 text-[11px] font-medium text-zinc-500 uppercase tracking-widest">
                 or email
             </span>
             </div>
