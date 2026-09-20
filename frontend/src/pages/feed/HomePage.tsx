@@ -15,9 +15,9 @@ export default function HomePage() {
     });
 
     return (
-        <div>
+        <div className="min-h-screen w-full flex flex-col p-6 md:p-10 relative overflow-x-hidden">
             {filteredVideos.length > 0 ? (
-                <VideoGrid videos={filteredVideos} />
+                <VideoGrid videos={filteredVideos} showMore={true} />
             ) : (
                 <div className="flex flex-col items-center justify-center py-20 text-center text-zinc-400">
                     <p className="text-lg font-medium text-zinc-300">No videos found</p>

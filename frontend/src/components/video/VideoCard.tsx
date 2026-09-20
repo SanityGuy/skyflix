@@ -10,9 +10,10 @@ import VideoStats from "./VideoStats";
 interface VideoCardProps {
     video?: Video;
     videoId?: string;
+    live?: boolean;
 }
 
-export default function VideoCard({ video, videoId }: VideoCardProps) {
+export default function VideoCard({ video, videoId, live }: VideoCardProps) {
     const navigate = useNavigate();
     const allVideos = getVideos();
     const currentVideo = video || (videoId ? allVideos.find((v) => v.id === videoId) : allVideos[0]);
@@ -34,6 +35,7 @@ export default function VideoCard({ video, videoId }: VideoCardProps) {
             thumbnail={currentVideo.thumbnail}
             title={currentVideo.title}
             duration={currentVideo.duration}
+            showLiveBadge={live}
             />
 
             <div className="mt-3 flex space-x-3 px-1">
