@@ -29,7 +29,7 @@ const router = createBrowserRouter(
             { path: '/watch', element: <WatchPage /> },
             { path: '/profile', element: <ProfilePage /> },
             { path: '/settings', element: <SettingsPage /> },
-            { path: '/history', element: <HistoryPage /> },
+            { path: '/channel/:handle/history', element: <HistoryPage /> },
             { path: '/radar', element: <LiveRadarPage /> },
             { path: '/channel/:handle/*', element: <ChannelPage /> },
             { path: '/channel', element: <ChannelPage /> },
