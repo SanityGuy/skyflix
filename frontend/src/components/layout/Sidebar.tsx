@@ -107,13 +107,13 @@ export default function Sidebar({
         </Link>
 
         <Link
-          to="/channel/@sanityguy/videos"
+          to="/channel/@sanityguy/likedvideos"
           onClick={onCloseMobile}
           title={isCollapsed ? "Liked Videos" : undefined}
           className={`flex items-center space-x-4 rounded-xl px-3 py-2.5 text-sm transition-colors ${
             isCollapsed ? "md:justify-center md:px-0" : ""
           } ${
-            isActive("/channel/@sanityguy/videos")
+            isActive("/channel/@sanityguy/likedvideos")
               ? "bg-zinc-800 font-semibold text-[#0095B6]"
               : "text-zinc-300 hover:bg-zinc-800/60 hover:text-white"
           }`}

@@ -4,9 +4,10 @@ import TLayout from '../components/layout/TLayout';
 
 import HomePage from '../pages/feed/HomePage';
 import WatchPage from '../pages/media/WatchPage';
-import ProfilePage from '../pages/user/ProfilePage';
+import LikedVideosPage from '../pages/user/LikedVideosPage';
 import SettingsPage from '../pages/setting/SettingsPage';
 import HistoryPage from '../pages/user/HistoryPage';
+import DownloadPage from '../pages/user/DownloadPage';
 import LiveRadarPage from '../pages/feed/LiveRadarPage';
 import ChannelPage from '../pages/user/ChannelPage';
 import TermsOfServicePage from '../pages/static/TermsOfServicePage';
@@ -27,11 +28,12 @@ const router = createBrowserRouter(
             { index: true, path: '/', element: <HomePage /> },
             { path: '/home', element: <HomePage /> },
             { path: '/watch', element: <WatchPage /> },
-            { path: '/profile', element: <ProfilePage /> },
             { path: '/settings', element: <SettingsPage /> },
-            { path: '/channel/:handle/history', element: <HistoryPage /> },
             { path: '/radar', element: <LiveRadarPage /> },
             { path: '/channel/:handle/*', element: <ChannelPage /> },
+            { path: '/channel/:handle/history', element: <HistoryPage /> },
+            { path: '/channel/:handle/downloads', element: <DownloadPage /> },
+            { path: '/channel/:handle/likedvideos', element: <LikedVideosPage /> },
             { path: '/channel', element: <ChannelPage /> },
             { path: '/results', element: <SearchPage /> },
         ],
