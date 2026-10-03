@@ -23,7 +23,7 @@ export default function ForgetPage() {
         <div className="absolute bottom-10 right-10 w-64 h-64 bg-[#0095B6]/5 rounded-full blur-2xl pointer-events-none" />
 
         <div className="absolute top-1 left-1">
-            <Link to="/" 
+            <Link to="/"
             className="flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold text-zinc-400 hover:text-[#0095B6] transition-colors mb-2 justify-center px-0"
             >
             <ArrowLeft size={16} className="shrink-0" />
@@ -40,6 +40,7 @@ export default function ForgetPage() {
             </h1>
             <p className="text-xs text-zinc-400 mt-1">
                 Enter your email address and we'll send you a link to reset your password.
+                <span className="text-red-500 uppercase ml-2">(Coming soon)</span>
             </p>
             </div>
 

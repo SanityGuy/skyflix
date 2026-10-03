@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Radio } from "lucide-react";
 import { getChannelByHandle } from "../../services/channelServices";
 
-export default function HistoryPage() {
+export default function LikedVideos() {
     const { handle = "" } = useParams<{ handle: string }>();
     const channelData = getChannelByHandle(handle);
 
@@ -33,10 +33,10 @@ export default function HistoryPage() {
         <div className="min-h-screen w-full flex flex-col p-6 md:p-10 relative overflow-x-hidden">
             <div className="flex flex-col gap-2 mb-10 max-w-4xl">
                 <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-                    History
+                    Liked Videos
                 </h1>
                 <p className="text-sm font-medium text-zinc-400">
-                    View your watch history and view your watch history.<br />
+                    View your liked videos.<br />
                     
                     Current Channel:
                     <span className="text-xs font-extrabold text-zinc-400 ml-1">{creator.displayName}</span>
